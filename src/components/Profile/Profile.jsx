@@ -1,3 +1,4 @@
+import { Posts } from '../Posts/Posts'
 import './Profile.css'
 
 export const Profile = () => {
@@ -8,15 +9,7 @@ export const Profile = () => {
     <div className='profile__item'>
      ava & descr
     </div>
-    <div className='profile__item'>
-     my posts
-     <div className=''>
-      new post
-     </div >
-     <div className=''>
-      postlist
-     </div>
-    </div>
+    <Posts />
    </main>
   </>
  )
