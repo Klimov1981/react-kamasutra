@@ -1,0 +1,17 @@
+.sidebar {
+ grid-area: sidebar;
+ padding: 10px;
+ background-color: #597ecc;
+ color: #fff;
+ text-align: left;
+}
+
+.sidebar__link{
+ color: #fff;
+}
+
+.sidebar__link:focus,
+.sidebar__link:hover
+{
+ color: #0c0f6b;
+}

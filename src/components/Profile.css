@@ -1,0 +1,7 @@
+.main {
+ grid-area: main;
+}
+
+.profile__item {
+ padding-left: 10px;
+}
