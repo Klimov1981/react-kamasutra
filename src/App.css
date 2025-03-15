@@ -16,6 +16,10 @@ img {
     "sidebar main";
 }
 
+.main {
+  grid-area: main;
+}
+
 ul {
   list-style: none;
   padding: 0;
