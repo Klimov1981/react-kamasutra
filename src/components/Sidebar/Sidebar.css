@@ -10,7 +10,10 @@
  color: #fff;
 }
 
-.sidebar__link:focus,
+.sidebar__link.active {
+ color: gold;
+}
+
 .sidebar__link:hover
 {
  color: #0c0f6b;

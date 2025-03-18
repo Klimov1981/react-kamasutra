@@ -1,33 +1,34 @@
+import { NavLink } from 'react-router-dom'
 import './Sidebar.css'
 
 export const Sidebar = () => {
- return (
-  <>
-     <aside className='sidebar'>
+  return (
+    <>
+      <aside className='sidebar'>
         <nav >
           <ul>
             <li>
-              <a href="" className='sidebar__link'>
+              <NavLink to="/profile" className='sidebar__link'>
                 Profile
-              </a>
+              </NavLink>
             </li>
             <li>
-              <a href="" className='sidebar__link'>
-              Messsages
-              </a>
+              <NavLink to="/dialogs" className='sidebar__link'>
+                Messsages
+              </NavLink>
             </li>
             <li>
-              <a href="" className='sidebar__link'>News</a>
+              <NavLink to="/news" className='sidebar__link'>News</NavLink>
             </li>
             <li>
-              <a href="" className='sidebar__link'>Music</a>
+              <NavLink to="/music" className='sidebar__link'>Music</NavLink>
             </li>
             <li>
-              <a href="" className='sidebar__link'>Settings</a>
+              <NavLink to="/settings" className='sidebar__link'>Settings</NavLink>
             </li>
           </ul>
         </nav>
       </aside>
-  </>
- )
+    </>
+  )
 }
