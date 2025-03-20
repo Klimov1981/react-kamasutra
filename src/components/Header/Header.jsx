@@ -4,7 +4,7 @@ export const Header = () => {
  return (
   <>
    <header className='header'>
-    <img src="https://i.pinimg.com/originals/d0/72/36/d07236826168fc1360e6fa22ba7a6aaf.jpg" alt="logo" />
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Circle-ye-3.svg/1024px-Circle-ye-3.svg.png" alt="logo" />
    </header>
   </>
  )

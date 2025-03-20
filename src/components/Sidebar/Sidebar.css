@@ -1,7 +1,7 @@
 .sidebar {
  grid-area: sidebar;
  padding: 10px;
- background-color: #597ecc;
+ background-color: #34465D;
  color: #fff;
  text-align: left;
 }
@@ -11,10 +11,10 @@
 }
 
 .sidebar__link.active {
- color: gold;
+ color: #ffa300;
 }
 
 .sidebar__link:hover
 {
- color: #0c0f6b;
+ color: #ffa300;
 }

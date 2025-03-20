@@ -1,0 +1,18 @@
+.postsBox {
+ padding: 10px;
+}
+
+.postsBox textarea,
+.postsBox button {
+ display: block;
+ margin-bottom: 10px;
+}
+
+.postsBox button {
+ background-color: #34465D;
+ color: #fff;
+}
+
+.postsBox button:hover {
+ color: #ffa300;
+}
