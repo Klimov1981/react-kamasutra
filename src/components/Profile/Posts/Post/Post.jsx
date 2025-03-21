@@ -1,12 +1,12 @@
 import './Post.css'
 
-export const Post = ({message, likeNuber}) => {
+export const Post = ({message, likeNumber}) => {
  return (
   <>
    <div className=''>
     {message}
    </div>
-   <span>{`likes number: ${likeNuber}`}</span>
+   <span>{`likes number: ${likeNumber}`}</span>
   </>
  )
 }

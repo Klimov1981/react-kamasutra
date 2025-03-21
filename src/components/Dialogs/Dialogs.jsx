@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom'
 import './Dialogs.css'
 
+
 const Chat = (props) => {
     return (
         <>
@@ -11,27 +12,59 @@ const Chat = (props) => {
     )
 }
 
-const Message = (props) =>{
+const Message = (props) => {
     return (
         <div className="message">{props.message}</div>
     )
 }
 
+const dialogsData = [
+    { id: 1, name: "Ali" },
+    { id: 2, name: "Halil" },
+    { id: 3, name: "Esma" },
+    { id: 4, name: "Iskender" },
+    { id: 5, name: "Zeynep" },
+    { id: 6, name: "Damla" },
+    { id: 7, name: "Didem" },
+    { id: 8, name: "Binbasi" },
+    { id: 9, name: "Kaan" },
+    { id: 10, name: "Fikret" }
+]
+
+const messagesData = [
+    { id: 1, message: "Hi" },
+    { id: 2, message: "How are you?" },
+    { id: 3, message: "Fine, thanks" },
+    { id: 4, message: "Hi" },
+    { id: 5, message: "Yo" },
+    { id: 6, message: "How are you?" },
+    { id: 7, message: "Fine, thanks" },
+    { id: 8, message: "Hi" },
+    { id: 9, message: "How are you" },
+    { id: 10, message: "Fine, thanks" }
+]
+
 export const Dialogs = () => {
+    let dialogsElements = dialogsData.map(
+        (chat) => {
+        return    <Chat key={chat.id} name={chat.name} id={chat.id} />
+        }
+    )
+
+    let messagesElements = messagesData.map(
+        (message) => {
+          return  <Message key={message.id} message={message.message} />
+        }
+    )
     return (
         <>
             <div className='dialogs'>
                 <div className='chats'>
-                    <Chat name='Al' id='1' />
-                    <Chat name='Lee' id='2' />
-                    <Chat name='Maho' id='3' />
-                    <Chat name='Lale' id='4' />
-                    <Chat name='Su' id='5' />
+                    {dialogsElements}
+
                 </div>
                 <div className='messages'>
-                    <Message message = 'Hi'/>
-                    <Message message = 'How are you?'/>
-                    <Message message = 'Fine, thanks'/>
+                    {messagesElements}
                 </div>
             </div>
         </>
