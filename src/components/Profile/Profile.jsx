@@ -1,13 +1,14 @@
 
 import { Posts } from './Posts/Posts'
-import { ProfileInfo } from './Posts/ProfileInfo/ProfileInfo'
+import { ProfileInfo } from './ProfileInfo/ProfileInfo'
 import './Profile.css'
 
-export const Profile = () => {
+export const Profile = (props) => {
+
  return (
   <>
     <ProfileInfo />
-    <Posts />
+    <Posts postsData={props.postsData}/>
   </>
  )
 }
