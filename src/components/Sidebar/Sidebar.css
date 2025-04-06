@@ -6,6 +6,10 @@
  text-align: left;
 }
 
+.sidebar nav {
+ padding-bottom: 40px;
+}
+
 .sidebar__link{
  color: #fff;
 }
