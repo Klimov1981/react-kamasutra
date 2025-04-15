@@ -6,17 +6,31 @@ import { Message } from './Message/Message'
 
 
 export const Dialogs = (props) => {
-    let dialogsElements = props.state.dialogsData.map(
-        (chat) => {
-            return <Chat key={chat.id} name={chat.name} id={chat.id} />
+    let state = props.dialogsPage
+    
+    let dialogsElements = state.dialogsData.map(
+        (chat, index) => {
+            return <Chat key={index} name={chat.name} id={chat.id} />
         }
     )
 
-    let messagesElements = props.state.messagesData.map(
-        (message) => {
-            return <Message key={message.id} message={message.message} />
+    let messagesElements =state.messagesData.map(
+        (message, index) => {
+            return <Message key={index} message={message.message} />
         }
     )
+
+    let newMessageBody = state.newMessageBody
+
+    let onSendMessageClick = () => {
+        props.sendMessage()
+
+    }
+
+    let onNewMessageChange = (e) => {
+        let body = e.target.value
+        props.updateNewMessageBody(body)
+    }
     return (
         <>
             <div className='dialogs'>
@@ -25,7 +39,16 @@ export const Dialogs = (props) => {
 
                 </div>
                 <div className='messages'>
-                    {messagesElements}
+                    <div>{messagesElements}</div>
+                    <div>
+                        <div>
+                            <textarea 
+                            value={newMessageBody}
+                            onChange={onNewMessageChange}
+                            placeholder='Enter your message'></textarea>
+                        </div>
+                        <div><button onClick={onSendMessageClick}>Send</button></div>
+                    </div>
                 </div>
             </div>
         </>

@@ -2,7 +2,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
-import {store } from './data.js'
+import { store } from './redux/redux-store.js'
 import { BrowserRouter } from 'react-router-dom'
 
 
@@ -18,7 +18,7 @@ export let rerenderEntireTree = (state) => {
         чтобы наш UI законно их мог получить и отбразить. Здесь мы пропсами их передаём
         дальше в приложение, предварительно импортировав. Там мы их примем через props 
         bind() жестко привязывает метод к вызывающему объекту*/}
-        <App state={state} dispatch={store.dispatch.bind(store)} />
+        <App state={state} dispatch={store.dispatch.bind(store)} store={store}/>
       </BrowserRouter>
     </StrictMode>,
   )
@@ -26,4 +26,6 @@ export let rerenderEntireTree = (state) => {
 
 rerenderEntireTree(store.getState())
 
-store.subscribe(rerenderEntireTree)
+store.subscribe(() => {
+  rerenderEntireTree(store.getState())
+})

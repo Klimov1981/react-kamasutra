@@ -1,7 +1,6 @@
 import { Post } from './Post/Post'
 import './Posts.css'
 import React from 'react'
-import { addPostActionCreator, updateNewPostTextActionCreator } from '../../../data'
 
 
 
@@ -15,15 +14,13 @@ export const Posts = (props) => {
 
  let newPostElement = React.createRef()
 
- let addPost = () => {
-  // props.addPost(text)
-  props.dispatch(addPostActionCreator())
+ let onAddPost = () => {
+  props.addPost()
  }
 
  let onPostOnChange = () => {
   let text = newPostElement.current.value
-  // props.updateNewPostText(text)
-  props.dispatch(updateNewPostTextActionCreator(text))
+  props.updateNewPostText(text)
  }
 
  return (
@@ -36,7 +33,7 @@ export const Posts = (props) => {
      value={props.newPostText}>
 
     </textarea>
-    <button onClick={addPost}>add post</button>
+    <button onClick={onAddPost}>add post</button>
     <div className='posts'>
      {posts}
     </div>
