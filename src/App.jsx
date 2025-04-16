@@ -8,9 +8,9 @@ import { News } from './components/News/News';
 import { Music } from './components/Music/Music';
 import { Settings } from './components/Settings/Settings';
 
-function App(props) {
+function App() {
   return (
-
+    
     <div className="app-wrapper">
       <Header />
       <Sidebar />
@@ -18,11 +18,11 @@ function App(props) {
         <Routes>
           <Route path='/' element={<Navigate to="/profile" />} />
           <Route
-            path='/profile' element={<Profile store={props.store} />}
+            path='/profile' element={<Profile  />}
           />
           <Route
             path='/dialogs' 
-            element={<DialogsContainer store={props.store} />}
+            element={<DialogsContainer  />}
           />
           <Route path='/news' element={<News />} />
           <Route path='/music' element={<Music />} />

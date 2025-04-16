@@ -7,6 +7,7 @@ import React from 'react'
 
 export const Posts = (props) => {
 
+ console.log(props);
 
  let posts = props.postsData.map((post, index) => (
   <Post key={index} message={post.message} likeNumber={post.likeNumber} />

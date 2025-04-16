@@ -2,34 +2,34 @@ const UPDATE_NEW_MESSAGE_BODY = 'UPDATE_NEW_MESSAGE_BODY'
 const SEND_MESSAGE = 'SEND_MESSAGE'
 
 let initialState = {
- 
-    dialogsData: [
-        { id: 1, name: "Ali" },
-        { id: 2, name: "Halil" },
-        { id: 3, name: "Esma" },
-        { id: 4, name: "Iskender" },
-        { id: 5, name: "Zeynep" },
-        { id: 6, name: "Damla" },
-        { id: 7, name: "Didem" },
-        { id: 8, name: "Binbasi" },
-        { id: 9, name: "Kaan" },
-        { id: 10, name: "Fikret" }
-    ],
 
-    messagesData: [
-        { id: 1, message: "Hi" },
-        { id: 2, message: "How are you?" },
-        { id: 3, message: "Fine, thanks" },
-        { id: 4, message: "Hi" },
-        { id: 5, message: "Yo" },
-        { id: 6, message: "How are you?" },
-        { id: 7, message: "Fine, thanks" },
-        { id: 8, message: "Hi" },
-        { id: 9, message: "How are you" },
-        { id: 10, message: "Fine, thanks" }
-    ],
+  dialogsData: [
+    { id: 1, name: "Ali" },
+    { id: 2, name: "Halil" },
+    { id: 3, name: "Esma" },
+    { id: 4, name: "Iskender" },
+    { id: 5, name: "Zeynep" },
+    { id: 6, name: "Damla" },
+    { id: 7, name: "Didem" },
+    { id: 8, name: "Binbasi" },
+    { id: 9, name: "Kaan" },
+    { id: 10, name: "Fikret" }
+  ],
 
-    newMessageBody: ' ', // Эта строка должна меняться.Содаём для этого action
+  messagesData: [
+    { id: 1, message: "Hi" },
+    { id: 2, message: "How are you?" },
+    { id: 3, message: "Fine, thanks" },
+    { id: 4, message: "Hi" },
+    { id: 5, message: "Yo" },
+    { id: 6, message: "How are you?" },
+    { id: 7, message: "Fine, thanks" },
+    { id: 8, message: "Hi" },
+    { id: 9, message: "How are you" },
+    { id: 10, message: "Fine, thanks" }
+  ],
+
+  newMessageBody: ' ', // Эта строка должна меняться.Содаём для этого action
 }
 
 
@@ -46,23 +46,33 @@ export const sendMessageCreator = () => {
 }
 
 export const dialogsReducer = (state = initialState, action) => {
-  
+
 
   switch (action.type) {
-    case SEND_MESSAGE:{
-    let body = {
-      id: state.messagesData.length + 1,
-      message: state.newMessageBody
+    case SEND_MESSAGE: {
+      let body = {
+        id: state.messagesData.length + 1,
+        message: state.newMessageBody
+      }
+      // state.messagesData = [
+      //   ...state.messagesData,
+      //   body
+      // ]
+
+      {
+        let stateCopy = { ...state }
+        stateCopy.messagesData = [...state.messagesData]
+        stateCopy.messagesData.push(body)
+        stateCopy.newMessageBody = ''
+        return stateCopy
+      }
     }
-    state.messagesData = [
-      ...state.messagesData,
-      body
-    ]
-    state.newMessageBody = ''
-    return state}
     case UPDATE_NEW_MESSAGE_BODY:
-      state.newMessageBody = action.body
-      return state
+      {
+        let stateCopy = {...state}
+        stateCopy.newMessageBody = action.body
+        return stateCopy
+      }
     default:
       return state
   }
