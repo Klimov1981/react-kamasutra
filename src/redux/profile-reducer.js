@@ -39,41 +39,24 @@ export const profileReducer = (state = initialState, action) => {
         message: state.newPostText,
         likeNumber: 0,
       }
-      // state.postsData = [
-      //     ...state.postsData,
-      //     newPost
-      // ]
-      // state.newPostText = ''
-      {
-        let stateCopy = { ...state }
-        stateCopy.postsData = [...state.postsData]
-        stateCopy.postsData.push(newPost)
-        stateCopy.newPostText = ""
-        return stateCopy
+
+
+
+      return {
+        ...state,
+        newPostText: '',
+        postsData: [...state.postsData, newPost]
       }
     }
+    
     case UPDATE_NEW_POST_TEXT: {
-      let stateCopy = { ...state }
-      stateCopy.newPostText = action.newText
-      return stateCopy
+      return {
+        ...state,
+        newPostText: action.newText
+      }
     }
     default:
       return state
   }
-
-  //  if (action.type === ADD_POST) {
-  //   let newPost = {
-  //       id: state.postsData.length + 1,
-  //       message: state.newPostText,
-  //       likeNumber: 0,
-  //   };
-  //   state.postsData = [
-  //       ...state.postsData,
-  //       newPost
-  //   ];
-  //   state.newPostText = '';
-  // } else if (action.type === UPDATE_NEW_POST_TEXT) {
-  //   state.newPostText = action.newText;
-  // } 
 
 }
