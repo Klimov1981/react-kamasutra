@@ -17,6 +17,7 @@ export const Sidebar = () => {
                 Messsages
               </NavLink>
             </li>
+            <NavLink to="/users" className='sidebar__link'> Users</NavLink>
             <li>
               <NavLink to="/news" className='sidebar__link'>News</NavLink>
             </li>

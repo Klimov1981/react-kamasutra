@@ -24,3 +24,8 @@
  padding: 10px;
 
 }
+
+.selected-page {
+ font-weight: bold;
+ font-style: 1.01rem;
+}
