@@ -54,6 +54,7 @@ export const setIsFetching = (isFetching) => {
     isFetching,
   }
 }
+
 export const usersReducer = (state = initialState, action) => {
 
   switch (action.type) {
@@ -97,6 +98,7 @@ export const usersReducer = (state = initialState, action) => {
         ...state,
         isFetching: action.isFetching
       }
+
     default:
       return state
   }
