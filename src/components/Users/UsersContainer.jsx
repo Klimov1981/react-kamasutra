@@ -1,10 +1,10 @@
 
 import { connect } from "react-redux";
-import { follow, setCurrentPage, setTotalUsersCount, setUsers, unfollow, setIsFetching } from "../../redux/users-reducer";
-import axios from 'axios';
+import { follow, setCurrentPage, setTotalUsersCount, setUsers, unfollow, setIsFetching, toogleFollowingInProgress } from "../../redux/users-reducer";
 import { Users } from './Users';
 import React from "react";
 import Preloader from "../common/preloder/Prelodaer";
+import {usersAPI} from "../../api/api"
 
 
 let mapStateToProps = (state) => {
@@ -15,54 +15,30 @@ let mapStateToProps = (state) => {
     totalUsersCount: state.usersPage.totalUsersCount,
     currentPage: state.usersPage.currentPage,
     isFetching: state.usersPage.isFetching,
+    followingInProgress: state.usersPage.followingInProgress,
   }
 }
 
-// let mapDispatchToProps = (dispatch) => {
-
-//   return {
-//     follow: (userId) => {
-//       dispatch(followAC(userId))
-//     },
-//     unfollow: (userId) => {
-//       dispatch(unfollowAC(userId))
-//     },
-//     setUsers: (users) => {
-//       dispatch(setUsersAC(users))
-//     },
-//     setCurrentPage: (pagenumber) => {
-//       dispatch(setCurrentPageAC(pagenumber))
-//     },
-//     setTotalUsersCount: (totalCount) => {
-//       dispatch(setTotalUsersCountAC(totalCount))
-//     },
-//     setIsFetching: (isFetching) => {
-//       dispatch(setIsFetchingAC(isFetching))
-//     }
-//   }
-// }
 class UsersContainer extends React.Component {
   // props здесь является частью объекта, они не передаются, поэтому this.props
   componentDidMount() {
     this.props.setIsFetching(true)
-    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
-      .then(response => {
-        const uniqueUsers = response.data.items.filter(
+      usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
+        const uniqueUsers = data.items.filter(
           (user, index, self) => index === self.findIndex(u => u.id === user.id)
         );
         this.props.setIsFetching(false)
         this.props.setUsers(uniqueUsers);
-        this.props.setTotalUsersCount(response.data.totalCount)
+        this.props.setTotalUsersCount(data.totalCount)
       });
   }
 
   onPageChange = (pageNumber) => {
     this.props.setIsFetching(true)
     this.props.setCurrentPage(pageNumber)
-    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
-      .then(response => {
+      usersAPI.getUsers(pageNumber, this.props.pageSize).then(data => {
         this.props.setIsFetching(false)
-        this.props.setUsers(response.data.items)
+        this.props.setUsers(data.items)
       })
 
   }
@@ -78,8 +54,10 @@ class UsersContainer extends React.Component {
         onPageChange={this.onPageChange}
         users={this.props.users}
         follow={this.props.follow}
-        unfollow={this.props.unfollow} />
+        unfollow={this.props.unfollow}
+        toogleFollowingInProgress={this.props.toogleFollowingInProgress}
+        followingInProgress={this.props.followingInProgress} />
     </>
   }
 }
-export default connect(mapStateToProps, {follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, setIsFetching})(UsersContainer)
+export default connect(mapStateToProps, {follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, setIsFetching, toogleFollowingInProgress})(UsersContainer)

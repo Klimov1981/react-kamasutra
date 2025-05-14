@@ -16,6 +16,7 @@ let initialState = {
     { id: 10, message: "Черешня", likeNumber: 67 }
   ],
   newPostText: '',
+  profile: null,
 }
 
 export const addPostActionCreator = () => {

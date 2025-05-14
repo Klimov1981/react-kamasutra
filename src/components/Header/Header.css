@@ -4,6 +4,7 @@
  grid-area: header;
  display: flex;
  align-items: center;
+ justify-content: space-between;
  background-color: #34465D;
  text-align: left;
  padding: 10px;
@@ -12,4 +13,18 @@
 .header img {
  width: 30px;
 } 
+
+.login-block__link {
+ color: white;
+
+}
+
+.login-block__link:visited {
+ color: white;
+}
+
+.login-block__link.active, 
+.login-block__link:hover {
+ color: #ffa300;
+}
 
