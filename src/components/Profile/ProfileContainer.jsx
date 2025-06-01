@@ -1,11 +1,14 @@
 import React from 'react';
 import { Profile } from './Profile';
-import axios from 'axios';
 import { connect } from 'react-redux';
-import { setUserProfile } from '../../redux/profile-reducer';
+import { getUserProfile } from '../../redux/profile-reducer';
 import { useParams, useNavigate } from 'react-router-dom';
+// import { withAuthRedirect } from '../../hoc/withAuthRedirect';
+import { compose } from 'redux';
 
 // Обёртка для классового компонента
+// Эта компонетнта отличается, тк общается с url для получения этих данных
+// в этом исполнении нужна ф-я withRouter, которая была удалена в 6й версии библиотеки react-router-dom
 function withRouter(Component) {
   return function WrappedComponent(props) {
     const params = useParams();
@@ -17,27 +20,26 @@ function withRouter(Component) {
 class ProfileContainer extends React.Component {
   componentDidMount() {
     const userId = this.props.router.params.userId || 2; // Используем параметр из URL или дефолтное значение
-    
-    axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
-      .then(response => {
-        this.props.setUserProfile(response.data);
-      })
-      .catch(error => {
-        console.error("Error fetching profile:", error);
-      });
+    this.props.getUserProfile(userId)
+
   }
 
   render() {
+
     return <Profile profile={this.props.profile} />;
   }
 }
 
+
+
+
 const mapStateToProps = (state) => ({
-  profile: state.profilePage.profile,
+  profile: state.profilePage.profile
 });
 
+
+
 // Композиция HOC (важен порядок!)
-export default connect(
-  mapStateToProps, 
-  { setUserProfile }
-)(withRouter(ProfileContainer));
+
+
+export default compose(connect(mapStateToProps, { getUserProfile }),withRouter)(ProfileContainer)

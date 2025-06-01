@@ -1,6 +1,7 @@
 import './Dialogs.css'
 import { Chat } from './Chat/Chat'
 import { Message } from './Message/Message'
+import { Navigate } from 'react-router-dom'
 
 
 
@@ -31,6 +32,10 @@ export const Dialogs = (props) => {
         let body = e.target.value
         props.updateNewMessageBody(body)
     }
+
+    // if(!props.isAuth) {
+    //     return <Navigate to='/login' replace />
+    // }
     return (
         <>
             <div className='dialogs'>

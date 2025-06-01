@@ -1,5 +1,6 @@
 import Preloader from '../../common/preloder/Prelodaer'
 import './ProfileInfo.css'
+import  ProfileStatus  from './ProfileStatus';
 
 export const ProfileInfo = (props) => {
  console.log(props);
@@ -20,6 +21,7 @@ export const ProfileInfo = (props) => {
      <li>{props.profile.contacts.twitter}</li>
      <li>{props.profile.contacts.vk}</li>
     </ul>
+    <ProfileStatus status={"Salam"}/>
     ava & descr
 
    </div>
